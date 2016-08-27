@@ -36,8 +36,10 @@ class Drug(md.Model):
     approval_date = md.DateField(max_length=255)
     patent_expiration_date = md.DateField(max_length=255)
 
-    def __init__(self, *args, approval_date='', patent_expiration_date='', **kwargs):
+    def __init__(self, *args, **kwargs):
         """Initialize model with correct datetime formats."""
+        approval_date = kwargs.pop('approval_date', '')
+        patent_expiration_date = kwargs.pop('patent_expiration_date', '')
         if approval_date:
             approval_date = datetime.strptime(approval_date, INPUT_DATE_FORMAT)
             approval_date = approval_date.strftime(OUTPUT_DATE_FORMAT)
@@ -48,7 +50,7 @@ class Drug(md.Model):
             *args,
             approval_date=approval_date,
             patent_expiration_date=patent_expiration_date,
-            **kwargs,
+            **kwargs
         )
 
     def __str__(self):
