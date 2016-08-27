@@ -22,6 +22,15 @@ description,
 """
 
 
+def _date_format(date_string):
+    """Convert to the correct date format for Django."""
+    try:
+        dt = datetime.strptime(date_string, INPUT_DATE_FORMAT)
+        return dt.strftime(OUTPUT_DATE_FORMAT)
+    except ValueError:
+        return ''
+
+
 class Drug(md.Model):
     """Database model of a pharmacuetical product."""
 
@@ -40,20 +49,9 @@ class Drug(md.Model):
 
     def __init__(self, *args, **kwargs):
         """Initialize model with correct datetime formats."""
-        approval_date = kwargs.pop('approval_date', '')
-        patent_expiration_date = kwargs.pop('patent_expiration_date', '')
-        if approval_date:
-            approval_date = datetime.strptime(approval_date, INPUT_DATE_FORMAT)
-            approval_date = approval_date.strftime(OUTPUT_DATE_FORMAT)
-        if patent_expiration_date:
-            patent_expiration_date = datetime.strptime(patent_expiration_date, INPUT_DATE_FORMAT)
-            patent_expiration_date = patent_expiration_date.strftime(OUTPUT_DATE_FORMAT)
-        super(Drug, self).__init__(
-            *args,
-            approval_date=approval_date,
-            patent_expiration_date=patent_expiration_date,
-            **kwargs
-        )
+        kwargs['approval_date'] = _date_format(kwargs['approval_date'])
+        kwargs['patent_expiration_date'] = _date_format(kwargs['patent_expiration_date'])
+        super(Drug, self).__init__(*args, **kwargs)
 
     def __str__(self):
         """Return string representation of Drug's trade name."""
