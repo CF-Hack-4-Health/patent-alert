@@ -2,7 +2,7 @@
 @import "vendor/bootstrap/stylesheets/_bootstrap.scss";
 @import "vendor/font-awesome/scss/font-awesome.scss";
 @include normalize();
-@import "_theme";
+@import "./lib/_theme.scss";
 
 html, body {
   width: 100%;
