@@ -4,14 +4,14 @@ from django.db import models as md
 
 
 """
-ingredient, 
-dosage_type, 
-delivery_method, 
-trade_name, 
-owner_name, 
-drug_strength, 
-drug_application_number, 
-product_number, 
+ingredient,
+dosage_type,
+delivery_method,
+trade_name,
+owner_name,
+drug_strength,
+drug_application_number,
+product_number,
 approval_date,
 patent_number,
 patent_expiration_date
