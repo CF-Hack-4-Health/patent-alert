@@ -23,5 +23,5 @@ class DrugSerializer(serializers.HyperlinkedModelSerializer):
             'approval_date',
             'patent_number',
             'patent_expiration_date',
-            'description',
+            # 'description',
         ]

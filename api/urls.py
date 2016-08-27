@@ -4,5 +4,5 @@ from api.views import DrugListView
 
 
 urlpatterns = [
-    url(r'^$', DrugListView.as_view(), name='drug_list'),
+    url(r'drugs/$', DrugListView.as_view(), name='drug_list'),
 ]
