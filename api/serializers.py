@@ -12,6 +12,7 @@ class DrugSerializer(serializers.HyperlinkedModelSerializer):
 
         model = Drug
         fields = [
+            'pk',
             'ingredient',
             'dosage_type',
             'delivery_method',
