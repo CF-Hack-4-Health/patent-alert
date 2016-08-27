@@ -1,8 +1,6 @@
 import django
 django.setup()
-# from drugs.models import Drug
 from drugs.models import Drug
-# file_path = open('sample_dict.txt', 'r')
 
 
 def conversion():
