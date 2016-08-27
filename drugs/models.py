@@ -1,6 +1,7 @@
+"""Definition of Drug models."""
+from __future__ import unicode_literals
 from django.db import models as md
 
-# Create your models here.
 
 """
 ingredient, 
@@ -27,7 +28,10 @@ class Drug(md.Model):
     owner_name = md.Charfield(max_length=255)
     drug_strength = md.Charfield(max_length=255)
     drug_application_number = md.Charfield(max_length=255)
-    product_number = md.Charfield(max_length=255) 
+    product_number = md.Charfield(max_length=255)
     patent_number = md.Charfield(max_length=255)
     approval_date = md.DateField(max_length=255)
     patent_expiration_date = md.DateField(max_length=255)
+
+    def __str__(self):
+        return self.trade_name
