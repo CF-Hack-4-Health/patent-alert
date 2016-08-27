@@ -1,6 +1,4 @@
-"""Establish views for API access."""
-from .permissions import IsOwnerAndReadOnly
-from api.serializers import PhotoSerializer, AlbumSerializer
+"""Establish views for API access to Drug database."""
 from drugs.models import Drug
 from rest_framework.generics import ListAPIView
 from api.serializers import DrugSerializer
