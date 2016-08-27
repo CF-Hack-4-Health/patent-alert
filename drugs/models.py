@@ -37,6 +37,7 @@ class Drug(md.Model):
     patent_expiration_date = md.DateField(max_length=255)
 
     def __init__(self, *args, approval_date='', patent_expiration_date='', **kwargs):
+        """Initialize model with correct datetime formats."""
         if approval_date:
             approval_date = datetime.strptime(approval_date, INPUT_DATE_FORMAT)
             approval_date = approval_date.strftime(OUTPUT_DATE_FORMAT)
@@ -51,4 +52,5 @@ class Drug(md.Model):
         )
 
     def __str__(self):
+        """Return string representation of Drug's trade name."""
         return self.trade_name
