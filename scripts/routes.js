@@ -1,5 +1,6 @@
 page('/', homeController.index);
 page('/description', descriptionController.index);
-page('/about', resultsController.index);
+page('/about', aboutController.index);
+page('/results', resultsController.index);
 
 page();
