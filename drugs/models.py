@@ -36,7 +36,7 @@ class Drug(md.Model):
     patent_number = md.CharField(max_length=255)
     description = md.CharField(max_length=255)
     approval_date = md.DateField(max_length=255)
-    patent_expiration_date = md.DateField(max_length=255)
+    patent_expiration_date = md.DateField(max_length=255, null=True)
 
     def __init__(self, *args, **kwargs):
         """Initialize model with correct datetime formats."""
