@@ -1,5 +1,5 @@
 """Serializers to convert models into JSON."""
-
+from __future__ import unicode_literals
 from rest_framework import serializers
 from drugs.models import Drug
 
@@ -24,5 +24,5 @@ class DrugSerializer(serializers.HyperlinkedModelSerializer):
             'approval_date',
             'patent_number',
             'patent_expiration_date',
-            # 'description',
+            'description',
         ]

@@ -17,7 +17,8 @@ drug_application_number,
 product_number,
 approval_date,
 patent_number,
-patent_expiration_date
+patent_expiration_date,
+description,
 """
 
 
@@ -33,7 +34,7 @@ class Drug(md.Model):
     drug_application_number = md.CharField(max_length=255)
     product_number = md.CharField(max_length=255)
     patent_number = md.CharField(max_length=255)
-    # description = md.CharField(max_length=255)
+    description = md.CharField(max_length=255)
     approval_date = md.DateField(max_length=255)
     patent_expiration_date = md.DateField(max_length=255)
 
