@@ -49,8 +49,8 @@ class Drug(md.Model):
 
     def __init__(self, *args, **kwargs):
         """Initialize model with correct datetime formats."""
-        kwargs['approval_date'] = _date_format(kwargs['approval_date'])
-        kwargs['patent_expiration_date'] = _date_format(kwargs['patent_expiration_date'])
+        kwargs['approval_date'] = _date_format(kwargs.get('approval_date', ''))
+        kwargs['patent_expiration_date'] = _date_format(kwargs.get('patent_expiration_date', ''))
         super(Drug, self).__init__(*args, **kwargs)
 
     def __str__(self):
