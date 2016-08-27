@@ -23,7 +23,14 @@
   };
 
   drugView.handleSearchInput = function() {
-    $('#form-input').on('change', drugModel.createNewInput);
+    if($('#form-input option:selected').text() === 'Active Ingredient'){
+      $('#form-input').on('change', drugModel.createInputByIngredient);
+    }
+    if($('#form-input option:selected').text() === 'Trade Name'){
+      $('#form-input').on('change', drugModel.createInputByTradeName);
+    }
+
+    $('#form-select').on('select', drugModel)
     $('#form-input').on('submit', function(e) {
       e.preventDefault();
       $('#form-input').on('submit', page('/search/' + drugModel.createEndpoint()));
@@ -33,7 +40,7 @@
   drugView.handleClickDrug = function() {
     $('#results').on('click', '.book', function(){
 
-      page('/description/' + drugModel.all[$(this)]);       
+      page('/description/' + drugModel.all[$(this)]);
       // drugModel.requestGoodReadsData(drugModel.all[$(this).index()]);
     });
 
