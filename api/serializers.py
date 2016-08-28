@@ -1,11 +1,18 @@
 """Serializers to convert models into JSON."""
-from __future__ import unicode_literals
 from rest_framework import serializers
 from drugs.models import Drug
+import datetime
 
 
 class DrugSerializer(serializers.HyperlinkedModelSerializer):
     """Serializer for the Drug model."""
+
+    date_delta = serializers.SerializerMethodField('_calc_date_delta')
+
+    def _calc_date_delta(self, obj):
+        """Return an integer of days until the expiration of the patent."""
+        delta = obj.patent_expiration_date - datetime.date.today()
+        return '{} days until patent expiration.'.format(delta.days)
 
     class Meta:
         """Meta for DrugSerializer."""
@@ -25,4 +32,5 @@ class DrugSerializer(serializers.HyperlinkedModelSerializer):
             'patent_number',
             'patent_expiration_date',
             'description',
+            'date_delta',
         ]
