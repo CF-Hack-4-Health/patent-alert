@@ -26,62 +26,55 @@
 
   drugModel.createInputByIngredient = function(){
     drugModel.formInput = new Input({
-      ingredient: $('#ingredient').val().replace(/\W+/g, '+')
+      ingredient: $('#form-input').val().replace(/\W+/g, '+')
     });
   };
 
   drugModel.createInputByTradeName = function(){
     drugModel.formInput = new Input({
-      trade_name:               $('#trade_name').val().replace(/\W+/g, '+'),
+      trade_name: $('#form-input').val().replace(/\W+/g, '+'),
     });
   };
 
   drugModel.createEndpoint = function(){
     var newUrl = '';
-    if(drugModel.pk) {newUrl += drugModel.formInput.pk;}
-    // if (drugModel.formInput.ingredient) { newUrl += drugModel.formInput.keyword; }
-    // if (drugModel.formInput.dosage_type) { newUrl += '+intitle:' + drugModel.formInput.drugName; }
-    // if (drugModel.formInput.delivery_method) { newUrl += '+inauthor:' + drugModel.formInput.author; }
-    // if (drugModel.formInput.trade_name) { newUrl += '+insubject:' + drugModel.formInput.genre; }
-    // if (drugModel.formInput.owner_name) { newUrl += '+inpublisher:' + drugModel.formInput.publisher; }
-    // if (drugModel.formInput.drug_strength) { newUrl += '+inisbn:' + drugModel.formInput.isbn; }
-    // if (drugModel.formInput.drug_application_number) { newUrl += '+insubject:' + drugModel.formInput.genre; }
-    // if (drugModel.formInput.product_number) { newUrl += '+inpublisher:' + drugModel.formInput.publisher; }
-    // if (drugModel.formInput.approval_date) { newUrl += '+inisbn:' + drugModel.formInput.isbn; }
-    // if (drugModel.formInput.patent_number) { newUrl += '+inisbn:' + drugModel.formInput.isbn; }
-    // if (drugModel.formInput.patent_expiration_date) { newUrl += '+inisbn:' + drugModel.formInput.isbn; }
+    if(drugModel.ingredient) {newUrl += drugModel.formInput.ingredient;}
+    if(drugModel.trade_name) {newUrl += drugModel.formInput.trade_name;}
     return newUrl;
   };
+
+// /api/drugs/search/?name=nameval&ingredient=ingval
+
 
   drugModel.requestDrugData = function(e, endPoint){
     if(e) {
       e.preventDefault();
     }
     $('#results').empty();
-    var newUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+    var newUrl = 'http://127.0.0.1:8000/api/drugs/search/';
     newUrl += endPoint;
     $.ajax({
-      url: newUrl
-      + '&maxResults=40'
-      + '&?key=AIzaSyCfsM3QeTqrabiuQ1f97bB7pawjROuhhv0',
+      url: newUrl,
       type: 'GET',
       success: function(data) {
-        if(data.items) {
-          drugModel.GBdata = data.items.filter(function(item){
-            if(item.volumeInfo.ratingsCount > 10
-              && item.accessInfo.country === 'US'
-              && item.volumeInfo.language == 'en'
-              && item.volumeInfo.imageLinks
-            ){
-              return item;
-            }
-          });
+        if(data) {
+          drugModel.data = data;
+          return drugModel;
+          // drugModel.GBdata = data.items.filter(function(item){
+          //   if(item.volumeInfo.ratingsCount > 10
+          //     && item.accessInfo.country === 'US'
+          //     && item.volumeInfo.language == 'en'
+          //     && item.volumeInfo.imageLinks
+          //   ){
+          //     return item;
+          //   }
+          // });
         } else {
           console.log('No Result');
         }
       }
     }).done(function() {
-      importDrugs(drugModel.GBdata);
+      importDrugs(drugModel.data);
       drugView.showResults(drugModel.all);
       drugView.handleClickDrug();
     });
