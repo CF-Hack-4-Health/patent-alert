@@ -1,11 +1,11 @@
 (function (module) {
-  var descriptionController = {};
+  var aboutController = {};
 
-  descriptionController.index = function() {
+  aboutController.index = function() {
     $('#home').css('display', 'none');
     $('#results').css('display', 'none');
     $('#discription').css('display', 'none');
     $('#about').css('display', 'block');
   };
-  module.descriptionController = descriptionController;
+  module.aboutController = aboutController;
 })(window);
