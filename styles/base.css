@@ -5,7 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import "https://fonts.googleapis.com/css?family=Muli";
+@import "https://fonts.googleapis.com/css?family=Muli|Merriweather+Sans";
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5605,16 +5605,26 @@ html {
   font-family: 'Muli', sans-serif; }
   html body .page-content {
     display: none; }
+  html body img {
+    padding-top: 5px; }
   html body section {
     width: 90%; }
   html body .clearfix {
     clear: both; }
+  html body .navbar-brand {
+    font-family: 'Merriweather', serif;
+    font-size: 30px; }
   html body .home-form {
     display: inline; }
   html body .bottom-padding {
     margin-bottom: 20px; }
   html body h1 {
-    text-align: center; }
+    text-align: center;
+    font-size: 50px; }
+  html body p {
+    font-size: 18px; }
+  html body lab {
+    font-size: 16px; }
   html body #home {
     text-align: center;
     margin: 0 auto; }
@@ -5628,7 +5638,5 @@ html {
   html body #about {
     width: 70%;
     margin: 0 auto; }
-  html body .logo {
-    color: blue; }
 
 /*# sourceMappingURL=base.css.map */

@@ -3,7 +3,7 @@
 @import "vendor/font-awesome/scss/font-awesome.scss";
 @include normalize();
 @import "./lib/_theme.scss";
-@import 'https://fonts.googleapis.com/css?family=Muli';
+@import 'https://fonts.googleapis.com/css?family=Muli|Merriweather+Sans';
 
 html {
   width: 100%;
@@ -15,13 +15,22 @@ html {
       display: none;
     }
 
+    img {
+      padding-top: 5px;
+    }
+
     section {
       width: 90%;
     }
+
     .clearfix {
       clear: both;
     }
 
+    .navbar-brand {
+      font-family: 'Merriweather', serif;
+      font-size: 30px;
+    }
     .home-form {
       display: inline;
     }
@@ -32,6 +41,15 @@ html {
 
     h1 {
       text-align: center;
+      font-size: 50px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    lab {
+      font-size: 16px;
     }
 
     #home {
