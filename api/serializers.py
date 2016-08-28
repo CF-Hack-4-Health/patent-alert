@@ -1,5 +1,4 @@
 """Serializers to convert models into JSON."""
-from __future__ import unicode_literals
 from rest_framework import serializers
 from drugs.models import Drug
 import datetime

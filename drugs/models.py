@@ -1,5 +1,4 @@
 """Definition of Drug models."""
-from __future__ import unicode_literals
 from django.db import models as md
 
 from datetime import datetime
