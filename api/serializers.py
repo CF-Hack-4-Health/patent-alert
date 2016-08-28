@@ -12,11 +12,8 @@ class DrugSerializer(serializers.HyperlinkedModelSerializer):
 
     def _calc_date_delta(self, obj):
         """Return an integer of days until the expiration of the patent."""
-        now = datetime.datetime.now()
-        exp = obj.patent_expiration_date
-        app = obj.approval_date
-        delta = exp - app
-        return delta.days
+        delta = obj.patent_expiration_date - datetime.date.today()
+        return '{} days until patent expiration.'.format(delta.days)
 
     class Meta:
         """Meta for DrugSerializer."""
