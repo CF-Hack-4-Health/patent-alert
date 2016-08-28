@@ -17,8 +17,18 @@ drug_application_number,
 product_number,
 approval_date,
 patent_number,
-patent_expiration_date
+patent_expiration_date,
+description,
 """
+
+
+def _date_format(date_string):
+    """Convert to the correct date format for Django."""
+    try:
+        dt = datetime.strptime(date_string, INPUT_DATE_FORMAT)
+        return dt.strftime(OUTPUT_DATE_FORMAT)
+    except ValueError:
+        return ''
 
 
 class Drug(md.Model):
@@ -33,26 +43,15 @@ class Drug(md.Model):
     drug_application_number = md.CharField(max_length=255)
     product_number = md.CharField(max_length=255)
     patent_number = md.CharField(max_length=255)
-    # description = md.CharField(max_length=255)
+    description = md.CharField(max_length=255)
     approval_date = md.DateField(max_length=255)
-    patent_expiration_date = md.DateField(max_length=255)
+    patent_expiration_date = md.DateField(max_length=255, null=True)
 
     def __init__(self, *args, **kwargs):
         """Initialize model with correct datetime formats."""
-        approval_date = kwargs.pop('approval_date', '')
-        patent_expiration_date = kwargs.pop('patent_expiration_date', '')
-        if approval_date:
-            approval_date = datetime.strptime(approval_date, INPUT_DATE_FORMAT)
-            approval_date = approval_date.strftime(OUTPUT_DATE_FORMAT)
-        if patent_expiration_date:
-            patent_expiration_date = datetime.strptime(patent_expiration_date, INPUT_DATE_FORMAT)
-            patent_expiration_date = patent_expiration_date.strftime(OUTPUT_DATE_FORMAT)
-        super(Drug, self).__init__(
-            *args,
-            approval_date=approval_date,
-            patent_expiration_date=patent_expiration_date,
-            **kwargs
-        )
+        kwargs['approval_date'] = _date_format(kwargs.get('approval_date', ''))
+        kwargs['patent_expiration_date'] = _date_format(kwargs.get('patent_expiration_date', ''))
+        super(Drug, self).__init__(*args, **kwargs)
 
     def __str__(self):
         """Return string representation of Drug's trade name."""
