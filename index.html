@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Patent Alert</title>
     <link rel="stylesheet" href="styles/base.css">
+    <script id="results-template" type="text/x-handlebars-template">
+      <div class="clear template">
+        <h3>{{ingredient}}</h3>
+        <h5>{{dosage_type}}</h5>
+        <h6>{{delivery_method}}</h6>
+        <h6>{{trade_name}}</h6>
+        <h6>{{owner_name}}</h6>
+        <h7>{{drug_strength}}</h7>
+        <h7>{{drug_application_number}}</h7>
+        <p>{{product_number}}</p>
+        <p>{{approval_date}}</p>
+        <p>{{patent_number}}</p>
+        <p>{{patent_expiration_date}}</p>
+      </div>
+    </script>
+    <script id="thumbnail-template" type="text/x-handlebars-template">
+      <div class="book book-preview">
+        <div class="mask">
+          <h2 class="title">{{trade_name}}</h2>
+          <h5 class="author">{{author}}</h5>
+          <p class="description">{{shortDescription}}</p>
+        </div>
+      </div>
+    </script>
+    <script id="detail-template" type="text/x-handlebars-template">
+      <div class="clear template detail">
+        <h3>{{bookTitle}}</h3>
+        <h5><strong>By</strong>: {{author}}</h5>
+        <h5>Genre: {{genre}}</h5>
+        <h5>Publisher: {{publisher}}</h5>
+        <h5>ISBN: {{isbn}}</h5>
+        <h5>Total Ratings: {{ratingsCount}}</h5>
+        <h5>Published Date: {{pubDate}}</h5>
+        <p>{{description}}</p>
+      </div>
+    </script>
+    <script id="rec-template" type="text/x-handlebars-template">
+      <div class="clear template rec">
+        <h3><a href="{{grlink}}">{{title}}</a></h3>
+        <img src="{{thumbnail}}" alt="We recommend this book too!" />
+        <h8>Goodreads Average Rating:</h8>
+        <h4>{{rating}}</h4>
+      </div>
+    </script>
   </head>
   <body>
     <header class="header-container">
@@ -12,14 +56,17 @@
         <div class="container">
           <div class="navbar-header">
             <a class="navbar-brand" href="#/">PA</a>
-              <img class="inline" src="img/bottles.png" alt="pills" width="40px"/>
+            <div class="navbar-header">
+                 <img class="inline" src="img/bottles.png" alt="pills" width="50px"/>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
           </div>
-          <div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="page tab" data-content="home"><a href="/"><i class="fa fa-home"></i>home</a></li>
               <li class="page tab" data-content="about"><a href="/about"><i class="fa fa-home"></i>about</a></li>
@@ -30,7 +77,7 @@
     </header>
     <section id="home" class="page-content">
       <h1 class="clearfix landing-head" id="logo">Patent Alert</h1>
-      <form class="home-form" action="index.html" method="post">
+      <form id="form-input" class="home-form" action="index.html" method="post">
         <label class="bottom-padding" for="">Search by:</label><br>
         <select class="landing-select bottom-padding" name="">
           <option>Active Ingredients</option>
@@ -48,13 +95,15 @@
     </section>
     <section id="about" class="page-content">
       <h1>About</h1>
-      <p>Patent Alert is an app designed to inform patients about the medication they have just been prescribed. This allows patients to ask informed questions to their primary care physician and become active participants in their own health.</p>
-      <p>Users are provided with information on dates when medication patents expire and prices may change. They can use this information to discuss other options with their physician for lower prescription costs (e.g. generic or a different drug).</p>
+      <p>Patent Alert is an app designed to inform patients about medication patent expiration dates.  This allows patients to acquire the necessary knowledge to to make informed decisions with their primary physician.</p>
+      <br>
       <p>Developers: Maelle Vance, Nicholas Hunt-Walker, Tre Cain, Aliza Pilisuk, Shane Henning, Will Weatherford, and Munir Ibrahim.</p>
     </section>
     <section id="results" class="page-content">
       <h1>Results</h1>
     </section>
+    <div class="book-details" id="book-details">
+    </div>
     <script src="/scripts/vendor/jQuery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/scripts/vendor/handlebars.js"></script>
