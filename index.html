@@ -4,38 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Patent Alert</title>
-    <link rel="stylesheet" href="styles/base.scss">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/base.css">
   </head>
   <body>
     <header class="header-container">
-      <div class="header-inner">
-        <div class="icon-menu">
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#/">PA</a>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="page tab" data-content="home"><a href="/"><i class="fa fa-home"></i>home</a></li>
+              <li class="page tab" data-content="about"><a href="/about"><i class="fa fa-home"></i>about</a></li>
+            </ul>
+          </div>
         </div>
-        <ul class="nav-items">
-          <li class="page tab" data-content="home"><a href="/">home</a></li>
-          <li class="page tab" data-content="about"><a href="/about">about</a></li>
-        </ul>
-      </div>
+      </nav>
+
+      <!-- <nav class="navbar navbar-default">
+       <div class="container">
+         <ul class="nav navbar-nav navbar-right">
+           <li class="page tab" data-content="home"><a href="/"><i class="fa fa-home"></i>home</a></li>
+           <li class="page tab" data-content="about"><a href="/about"><i class="fa fa-info-circle"></i>about</a></li>
+         </ul>
+       </div>
+     </nav> -->
+     <!-- <img class="inline" src="img/bottles.png" alt="pills"/> -->
     </header>
-    <h1>Patent Alert</h1>
+    <section id="home" class="page-content">
+      <h1 class="clearfix landing-head">Patent Alert</h1>
+      <form class="home-form" action="index.html" method="post">
+        <label class="bottom-padding" for="">Search by:</label><br>
+        <select class="landing-select bottom-padding" name="">
+          <option>Active Ingredients</option>
+          <option>Trade Name</option>
+        </select><br>
+        <input class="landing-input bottom-padding" type="text" name="name" value=""><br>
+        <button class="btn btn-primary bottom-padding" type="submit" name="button">Search</button>
+      </form>
+    </section>
     <section id="description" class="page-content">
       <h1>Description</h1>
     </section>
     <section id="about" class="page-content">
       <h1>About</h1>
+      <p>Patent Alert is an app designed to inform patients about medication patent expiration dates.  This allows patients to acquire the necessary knowledge to to make informed decisions with their primary physician.</p>
     </section>
     <section id="results" class="page-content">
       <h1>Results</h1>
     </section>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/scripts/vendor/jQuery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/scripts/vendor/handlebars.js"></script>
     <script src="/scripts/vendor/page.js"></script>
     <script src="/scripts/controller/homeController.js"></script>
-    <script src="/scripts/controller/projectController.js"></script>
+    <script src="/scripts/controller/descriptionController.js"></script>
     <script src="/scripts/controller/aboutController.js"></script>
-    <script src="/scripts/controller/contactController.js"></script>
+    <script src="/scripts/controller/resultsController.js"></script>
     <script src="/scripts/routes.js"></script>
   </body>
 </html>
